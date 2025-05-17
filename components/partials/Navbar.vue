@@ -1,8 +1,8 @@
 <template>
-  <nav class="fixed top-0 left-0 right-0 bg-white">
+  <nav class="fixed top-0 left-0 right-0 bg-white z-40 bg-opacity-50 backdrop-blur">
     <!-- container -->
     <ResponsiveContainer>
-      <section class="bg-white py-5 px-8 lg:px-0 flex justify-between items-center">
+      <section class="lg:py-5 py-3 px-8 lg:px-0 flex justify-between items-center">
         <!-- brand -->
         <section>
           <BrandsSecondary />
