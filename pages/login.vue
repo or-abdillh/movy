@@ -1,6 +1,6 @@
 <template>
   <NuxtLayout name="guest-layout">
-    <main class="flex flex-col gap-24 justify-center items-center bg-white max-w-2xl mx-auto p-12 rounded-lg shadow-sm">
+    <main class="flex flex-col gap-24 justify-center items-center bg-white max-w-2xl mx-auto p-12 rounded-lg shadow-sm min-h-screen">
       <!-- brand -->
       <BrandsPrimary />
 
