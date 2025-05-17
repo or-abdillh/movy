@@ -1,0 +1,61 @@
+{
+    "name": "Movy - Move and Story",
+    "short_name": "Movy",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#222831",
+    "description": "A modern and minimalist app to create customizable share cards for your fitness activities.",
+    "icons": [
+        {
+            "src": "icons/114.png",
+            "sizes": "114x114",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/120.png",
+            "sizes": "120x120",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/128.png",
+            "sizes": "128x128",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/144.png",
+            "sizes": "144x144",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/152.png",
+            "sizes": "152x152",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/167.png",
+            "sizes": "167x167",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/180.png",
+            "sizes": "180x180",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/256.png",
+            "sizes": "256x256",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}
