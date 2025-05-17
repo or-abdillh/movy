@@ -2,11 +2,19 @@
 export default defineNuxtConfig({
   compatibilityDate: '2025-05-15',
   devtools: { enabled: true },
-  modules: ['@nuxt/fonts', '@vite-pwa/nuxt', '@nuxtjs/tailwindcss'],
+  modules: ['@nuxt/fonts', '@vite-pwa/nuxt', '@nuxtjs/tailwindcss', '@pinia/nuxt'],
 
   runtimeConfig: {
     public: {
       appName: process.env.NUXT_PUBLIC_APP_NAME,
+      strava: {
+        clientId: process.env.NUXT_PUBLIC_STRAVA_CLIENT_ID,
+        redirectUri: process.env.NUXT_PUBLIC_STRAVA_REDIRECT_URI,
+      }
+    },
+
+    strava: {
+      clientSecret: process.env.STRAVA_CLIENT_SECRET,
     }
   },
 
