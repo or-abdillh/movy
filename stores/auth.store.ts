@@ -39,4 +39,6 @@ export const useAuthStore = defineStore("auth", () => {
         setAthlete,
         setCredentials
     }
+}, {
+    persist: true
 })
