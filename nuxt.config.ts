@@ -7,7 +7,8 @@ export default defineNuxtConfig({
     '@vite-pwa/nuxt',
     '@nuxtjs/tailwindcss',
     '@pinia/nuxt',
-    "pinia-plugin-persistedstate"
+    "pinia-plugin-persistedstate",
+    "@nuxt/image"
   ],
 
   runtimeConfig: {
@@ -39,5 +40,11 @@ export default defineNuxtConfig({
         styles: ["normal", "italic"],
       }
     ]
+  },
+
+  image: {
+    cloudinary: {
+      baseURL: "https://res.cloudinary.com/diundang-digital/image/upload"
+    }
   }
 })
