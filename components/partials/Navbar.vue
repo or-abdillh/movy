@@ -5,7 +5,8 @@
       <section class="bg-white py-5 px-8 lg:px-0 flex justify-between items-center">
         <!-- brand -->
         <section>
-          <BrandsMono />
+          <BrandsSecondary class="lg:hidden" />
+          <BrandsMono class="hidden lg:visible" />
         </section>
   
         <!-- user -->
