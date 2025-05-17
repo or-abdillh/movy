@@ -6,3 +6,10 @@ export type StravaTokenExchangeResponse = {
     access_token: string;
     athlete: Athlete
 }
+
+export type ShareCardStyle = {
+    id: string;
+    name: string;
+    description: string;
+    gradient: string;
+}
