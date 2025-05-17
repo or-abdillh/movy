@@ -1,9 +1,9 @@
 <template>
   <NuxtLayout name="app-layout">
-    <ResponsiveContainer>
+    <ResponsiveContainer class="mb-10">
       <!-- card welcome -->
       <header
-        class="w-full mb-8 px-12 lg:h-64 h-80 flex flex-col justify-center lg:rounded-lg bg-[url('/images/21e4f37f-36b6-4074-afbe-38f3785ce600.jpeg')] bg-cover bg-center text-white">
+        class="w-full px-12 lg:h-64 h-80 flex flex-col justify-center lg:rounded-lg bg-[url('/images/21e4f37f-36b6-4074-afbe-38f3785ce600.jpeg')] bg-cover bg-center text-white">
         <h1 class="font-bold text-3xl mb-6">
           <i class="fa-solid fa-paint-roller me-1"></i>
           Craft Your Workout. <br> <strong class="font-extrabold underline">Share</strong> the Journey.
@@ -12,7 +12,7 @@
       </header>
     </ResponsiveContainer>
 
-    <ResponsiveContainer class="px-5 lg:px-0">
+    <ResponsiveContainer class="px-5 lg:px-0 mb-10">
       <!-- styles -->
       <section>
         <!-- top -->
@@ -35,11 +35,28 @@
         </div>
       </section>
     </ResponsiveContainer>
+
+    <!-- recently activity -->
+    <ResponsiveContainer class="px-5 lg:px-0">
+      <!-- top -->
+      <header class="flex justify-between items-center mb-4">
+          <p class="text-lg font-bold text-slate-800">Your Recently Activites</p>
+          <i class="fa-solid fa-chevron-down"></i>
+      </header>
+
+      <!-- activities -->
+      <section class="flex flex-col gap-3">
+        <template v-for="(activity, index) in athleteStore.activities" :key="activity.id">
+          <CardsRecentActivityCard v-if="index < 5" :activity />
+        </template>
+      </section>
+    </ResponsiveContainer>
   </NuxtLayout>
 </template>
 
 <script setup lang="ts">
 
+import { AthleteService } from "~/services/athlete.service";
 import { StyleService } from "~/services/style.service";
 import type { Style } from "~/ts/type";
 
@@ -49,14 +66,33 @@ useHead({
 
 // services
 const styleService = new StyleService()
+const athleteService = new AthleteService()
+
+// stores
+const athleteStore = useAthleteStore()
+const authStore = useAuthStore()
 
 // refs
 const styles = ref<Style[]>([]);
 
 // on mounted
 onMounted(async () => {
+
   // get styles
   styles.value = await styleService.getStyles()
+
+  // get athlete activities if activities is empty
+  if (athleteStore.activities.length === 0 && authStore.isAuthenticated) {
+    
+    // set token inside athlete service
+    athleteService.setToken(authStore.credentials.accessToken)
+
+    // get activities
+    const activities =  await athleteService.getActivities(1, 10)
+
+    // set activities
+    athleteStore.setActivities(activities)
+  }
 })
 
 </script>
