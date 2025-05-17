@@ -21,6 +21,9 @@ export const useAuthStore = defineStore("auth", () => {
         accessToken: ""
     });
 
+    // getters
+    const isAuthenticated = computed(() => !!athlete.value)
+
     // setter
     const setAthlete = (payload: Athlete | undefined = undefined) => athlete.value = payload
     const setCredentials = (payload: Credentials | undefined = undefined) => {
@@ -36,6 +39,7 @@ export const useAuthStore = defineStore("auth", () => {
     return {
         athlete,
         credentials,
+        isAuthenticated,
         setAthlete,
         setCredentials
     }
