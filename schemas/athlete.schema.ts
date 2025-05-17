@@ -1,11 +1,11 @@
 import { z } from "zod";
 
-export const athleteSchema = z.object({
+export const AthleteSchema = z.object({
     id: z.number(),
     username: z.string().nullable(),
     resource_state: z.number(),
     firstname: z.string(),
-    lastname: z.string(),
+    lastname: z.string(),   
     bio: z.string(),
     city: z.string(),
     state: z.string(),
@@ -23,4 +23,4 @@ export const athleteSchema = z.object({
     follower: z.unknown().nullable(),
 });
 
-export type Athlete = z.infer<typeof athleteSchema>;
+export type Athlete = z.infer<typeof AthleteSchema>;
