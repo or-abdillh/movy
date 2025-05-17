@@ -7,7 +7,7 @@
     <span class="size-96 bg-primary-200 block rounded-full blur-2xl fixed bottom-0 right-0 translate-y-2/4 translate-x-1/4"></span>
 
     <!-- content -->
-    <main class="min-h-screen p-8">
+    <main class="min-h-screen p-8 grid placeitems-center">
       <slot></slot>
     </main>
   </main>
