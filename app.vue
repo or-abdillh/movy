@@ -15,6 +15,12 @@ useHead({
   titleTemplate(title) {
     return title ? `${config.public.appName} | ${title}` : config.public.appName
   },
+  script: [
+    {
+      src: "https://kit.fontawesome.com/b026c11a83.js",
+      crossorigin: "anonymous",
+    }
+  ]
 })
 
 </script>
