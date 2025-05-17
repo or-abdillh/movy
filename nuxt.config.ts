@@ -2,7 +2,13 @@
 export default defineNuxtConfig({
   compatibilityDate: '2025-05-15',
   devtools: { enabled: true },
-  modules: ['@nuxt/fonts', '@vite-pwa/nuxt', '@nuxtjs/tailwindcss', '@pinia/nuxt'],
+  modules: [
+    '@nuxt/fonts',
+    '@vite-pwa/nuxt',
+    '@nuxtjs/tailwindcss',
+    '@pinia/nuxt',
+    "pinia-plugin-persistedstate"
+  ],
 
   runtimeConfig: {
     public: {
