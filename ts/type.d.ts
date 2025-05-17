@@ -7,9 +7,9 @@ export type StravaTokenExchangeResponse = {
     athlete: Athlete
 }
 
-export type ShareCardStyle = {
+export type Style = {
     id: string;
     name: string;
     description: string;
-    gradient: string;
+    cover: string;
 }
