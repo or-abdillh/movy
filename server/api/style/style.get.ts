@@ -11,8 +11,8 @@ export default defineEventHandler(event => {
       cover: "https://res.cloudinary.com/diundang-digital/image/upload/w_250/v1747484741/movy/images/styles/classic-clean.jpg"
     },
     {
-      id: "monochrome-mode",
-      name: "Monochrome Mode",
+      id: "monochrome",
+      name: "Monochrome",
       description: "High-contrast, black-and-white or single-tone design — great for a sleek, powerful feel.",
       cover: "https://res.cloudinary.com/diundang-digital/image/upload/w_250/v1747485023/movy/images/styles/dark-mode.jpg"
     },
@@ -33,6 +33,12 @@ export default defineEventHandler(event => {
       name: "Photo Focus",
       description: "Puts user photos front and center with minimal overlays — perfect for scenic shots or selfies.",
       cover: "https://res.cloudinary.com/diundang-digital/image/upload/w_250/v1747485088/movy/images/styles/photo-overlay.jpg"
+    },
+    {
+      id: "minimal-outline",
+      name: "Minimal Outline",
+      description: "A modern and elegant design style that emphasizes clarity and subtlety.",
+      cover: "https://res.cloudinary.com/diundang-digital/image/upload/w_250/v1747571530/movy/images/styles/minimal-outline.jpg"
     },
   ];
 
