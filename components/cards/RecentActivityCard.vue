@@ -20,7 +20,7 @@
         <!-- avg heart rate -->
         <span class="text-slate-400 text-sm">
           <i class="fa-solid fa-heart-pulse me-1"></i>
-          {{ activity.average_heartrate }}
+          {{ activity.average_heartrate?.toFixed(0) }} bpm
         </span>
 
         <!-- thropy -->
