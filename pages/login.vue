@@ -40,7 +40,19 @@ useHead({
 // composable
 const config = useRuntimeConfig()
 
+// stores
+const authStore = useAuthStore()
+
 // states
 const stravaUrl = `https://www.strava.com/oauth/authorize?client_id=${config.public.strava.clientId}&response_type=code&redirect_uri=${config.public.strava.redirectUri}&approval_prompt=force&scope=read,activity:read_all,profile:read_all`;
+
+// hook
+onMounted(() => {
+  
+  // check if user is already logged in
+  if (authStore.isAuthenticated) {
+    navigateTo({ name: "app.index" })
+  }
+})
 
 </script>
