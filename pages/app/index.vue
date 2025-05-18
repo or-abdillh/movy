@@ -63,6 +63,10 @@ import { AthleteService } from "~/services/athlete.service";
 import { StyleService } from "~/services/style.service";
 import type { Style } from "~/ts/type";
 
+definePageMeta({
+  name: "app.index"
+})
+
 useHead({
   title: "App"
 })
