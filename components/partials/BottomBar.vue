@@ -4,11 +4,12 @@
       <!-- wrapper -->
       <section class="grid grid-cols-4 gap-0">
         <template v-for="menu in menus" :key="menu.name">
-          <button class="p-6 hover:bg-secondary-100 duration-200 flex justify-center flex-col items-center"
+          <NuxtLink :to="{ name: menu.route }"
+            class="p-6 hover:bg-secondary-100 duration-200 flex justify-center flex-col gap-1 items-center"
             :class="currentMenu?.name === menu.name ? 'text-white bg-gradient-to-bl from-primary-900 to-secondary-900' : 'text-slate-300'">
             <i class="fa-solid" :class="menu.icon"></i>
             <small class="font-medium" v-if="currentMenu?.name === menu.name">{{ menu.name }}</small>
-          </button>
+          </NuxtLink>
         </template>
       </section>
     </ResponsiveContainer>
@@ -18,28 +19,35 @@
 <script setup lang="ts">
 
 // states
-const menus: { name: string, icon: string }[] = [
+const menus: { name: string, icon: string, route: string }[] = [
   {
     name: "Home",
-    icon: "fa-home"
+    icon: "fa-home",
+    route: "app.index"
   },
   {
     name: "Style",
-    icon: "fa-palette"
+    icon: "fa-palette",
+    route: "app.style.index"
   },
   {
     name: "Activity",
-    icon: "fa-dumbbell"
+    icon: "fa-dumbbell",
+    route: "app.index"
   },
   {
     name: "Profile",
-    icon: "fa-user"
+    icon: "fa-user",
+    route: "app.index"
   }
 ]
 
+// composables
+const route = useRoute()
+
 // getter
 const currentMenu = computed(() => {
-  return menus.find(menu => menu.name === "Home")
+  return menus.find((menu) => menu.route === route.name)
 })
 
 </script>
