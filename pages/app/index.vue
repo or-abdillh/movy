@@ -40,16 +40,19 @@
     <ResponsiveContainer class="px-5 lg:px-0">
       <!-- top -->
       <header class="flex justify-between items-center mb-4">
-          <p class="text-lg font-bold text-slate-800">Your Recently Activites</p>
+          <p class="text-lg font-bold text-slate-800">Your Recently Activities</p>
           <i class="fa-solid fa-chevron-down"></i>
       </header>
 
       <!-- activities -->
-      <section class="flex flex-col gap-3">
+      <section class="flex flex-col gap-3 mb-3">
         <template v-for="(activity, index) in athleteStore.activities" :key="activity.id">
           <CardsRecentActivityCard v-if="index < 5" :activity />
         </template>
       </section>
+
+      <!-- see more -->
+      <ButtonsPrimary class="w-full">See more</ButtonsPrimary>
     </ResponsiveContainer>
   </NuxtLayout>
 </template>
