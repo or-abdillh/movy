@@ -51,7 +51,7 @@ onMounted(() => {
   
   // check if user is already logged in
   if (authStore.isAuthenticated) {
-    navigateTo({ name: "app.index" })
+    // navigateTo({ name: "app.index" })
   }
 })
 
