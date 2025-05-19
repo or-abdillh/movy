@@ -1,0 +1,91 @@
+{
+    "cards": [
+        {
+            "id": "1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d",
+            "style_id": "b1e7e4c2-8c8e-4b2e-9e2d-7f3e2b1c4a5d",
+            "slug": "sunset-vista",
+            "name": "Sunset Vista",
+            "thumbnail": "https://res.cloudinary.com/diundang-digital/image/upload/v1747659203/movy/images/cards/Classic%20Clean/first.jpg"
+        },
+        {
+            "id": "2b3c4d5e-6f7a-8b9c-0d1e-2f3a4b5c6d7e",
+            "style_id": "b1e7e4c2-8c8e-4b2e-9e2d-7f3e2b1c4a5d",
+            "slug": "forest-mist",
+            "name": "Forest Mist",
+            "thumbnail": "https://res.cloudinary.com/diundang-digital/image/upload/v1747659203/movy/images/cards/Classic%20Clean/first.jpg"
+        },
+        {
+            "id": "3c4d5e6f-7a8b-9c0d-1e2f-3a4b5c6d7e8f",
+            "style_id": "b1e7e4c2-8c8e-4b2e-9e2d-7f3e2b1c4a5d",
+            "slug": "crimson-peak",
+            "name": "Crimson Peak",
+            "thumbnail": "https://res.cloudinary.com/diundang-digital/image/upload/v1747659203/movy/images/cards/Classic%20Clean/first.jpg"
+        },
+        {
+            "id": "4d5e6f7a-8b9c-0d1e-2f3a-4b5c6d7e8f9a",
+            "style_id": "b1e7e4c2-8c8e-4b2e-9e2d-7f3e2b1c4a5d",
+            "slug": "azure-dream",
+            "name": "Azure Dream",
+            "thumbnail": "https://res.cloudinary.com/diundang-digital/image/upload/v1747659203/movy/images/cards/Classic%20Clean/first.jpg"
+        },
+        {
+            "id": "5e6f7a8b-9c0d-1e2f-3a4b-5c6d7e8f9a0b",
+            "style_id": "b1e7e4c2-8c8e-4b2e-9e2d-7f3e2b1c4a5d",
+            "slug": "golden-meadow",
+            "name": "Golden Meadow",
+            "thumbnail": "https://res.cloudinary.com/diundang-digital/image/upload/v1747659203/movy/images/cards/Classic%20Clean/first.jpg"
+        },
+        {
+            "id": "6f7a8b9c-0d1e-2f3a-4b5c-6d7e8f9a0b1c",
+            "style_id": "b1e7e4c2-8c8e-4b2e-9e2d-7f3e2b1c4a5d",
+            "slug": "shadow-glen",
+            "name": "Shadow Glen",
+            "thumbnail": "https://res.cloudinary.com/diundang-digital/image/upload/v1747659203/movy/images/cards/Classic%20Clean/first.jpg"
+        },
+
+
+
+        {
+            "id": "a3d2f6b7-5e4c-4f8a-9b1e-2c3d4e5f6a7b",
+            "style_id": "a3d2f6b7-5e4c-4f8a-9b1e-2c3d4e5f6a7b",
+            "slug": "noir-eclipse",
+            "name": "Noir Eclipse",
+            "thumbnail": "https://res.cloudinary.com/diundang-digital/image/upload/v1747662315/movy/images/cards/Monochrome/first.jpg"
+        },
+        {
+            "id": "b4e5f6a7-6c7d-8e9f-0a1b-2c3d4e5f6a7b",
+            "style_id": "a3d2f6b7-5e4c-4f8a-9b1e-2c3d4e5f6a7b",
+            "slug": "silver-shadow",
+            "name": "Silver Shadow",
+            "thumbnail": "https://res.cloudinary.com/diundang-digital/image/upload/v1747659203/movy/images/cards/Monochrome/first.jpg"
+        },
+        {
+            "id": "c5f6a7b8-7d8e-9f0a-1b2c-3d4e5f6a7b8c",
+            "style_id": "a3d2f6b7-5e4c-4f8a-9b1e-2c3d4e5f6a7b",
+            "slug": "onyx-dawn",
+            "name": "Onyx Dawn",
+            "thumbnail": "https://res.cloudinary.com/diundang-digital/image/upload/v1747659203/movy/images/cards/Monochrome/first.jpg"
+        },
+        {
+            "id": "d6a7b8c9-8e9f-0a1b-2c3d-4e5f6a7b8c9d",
+            "style_id": "a3d2f6b7-5e4c-4f8a-9b1e-2c3d4e5f6a7b",
+            "slug": "graphite-glow",
+            "name": "Graphite Glow",
+            "thumbnail": "https://res.cloudinary.com/diundang-digital/image/upload/v1747659203/movy/images/cards/Monochrome/first.jpg"
+        },
+        {
+            "id": "e7b8c9d0-9f0a-1b2c-3d4e-5f6a7b8c9d0e",
+            "style_id": "a3d2f6b7-5e4c-4f8a-9b1e-2c3d4e5f6a7b",
+            "slug": "charcoal-bliss",
+            "name": "Charcoal Bliss",
+            "thumbnail": "https://res.cloudinary.com/diundang-digital/image/upload/v1747659203/movy/images/cards/Monochrome/first.jpg"
+        },
+        {
+            "id": "f8c9d0e1-0a1b-2c3d-4e5f-6a7b8c9d0e1f",
+            "style_id": "a3d2f6b7-5e4c-4f8a-9b1e-2c3d4e5f6a7b",
+            "slug": "ivory-night",
+            "name": "Ivory Night",
+            "thumbnail": "https://res.cloudinary.com/diundang-digital/image/upload/v1747659203/movy/images/cards/Monochrome/first.jpg"
+        }
+    ]
+}

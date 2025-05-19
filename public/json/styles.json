@@ -1,0 +1,46 @@
+{
+    "styles": [
+        {
+            "id": "b1e7e4c2-8c8e-4b2e-9e2d-7f3e2b1c4a5d",
+            "slug": "classic-clean",
+            "name": "Classic Clean",
+            "description": "Minimalist layout with clean lines, subtle shadows, and easy-to-read stats. Timeless and versatile.",
+            "cover": "https://res.cloudinary.com/diundang-digital/image/upload/w_250/v1747484741/movy/images/styles/classic-clean.jpg"
+        },
+        {
+            "id": "a3d2f6b7-5e4c-4f8a-9b1e-2c3d4e5f6a7b",
+            "slug": "monochrome",
+            "name": "Monochrome",
+            "description": "High-contrast, black-and-white or single-tone design — great for a sleek, powerful feel.",
+            "cover": "https://res.cloudinary.com/diundang-digital/image/upload/w_250/v1747485023/movy/images/styles/dark-mode.jpg"
+        },
+        {
+            "id": "c4e5f6a7-b8c9-4d1e-8f2a-3b4c5d6e7f8a",
+            "slug": "vibrant-energy",
+            "name": "Vibrant Energy",
+            "description": "Vibrant colors, big typography, and dynamic shapes — perfect for showing off intense workouts.",
+            "cover": "https://res.cloudinary.com/diundang-digital/image/upload/w_250/v1747484741/movy/images/styles/vibrant-energy.jpg"
+        },
+        {
+            "id": "d5f6a7b8-c9d1-4e2f-9a3b-4c5d6e7f8a9b",
+            "slug": "retro-vibes",
+            "name": "Retro Vibes",
+            "description": "Inspired by 80s–90s design — bold blocks, pixel patterns, or retro typography.",
+            "cover": "https://res.cloudinary.com/diundang-digital/image/upload/w_250/v1747485019/movy/images/styles/retro-vibes.jpg"
+        },
+        {
+            "id": "e6a7b8c9-d1e2-4f3a-9b4c-5d6e7f8a9b0c",
+            "slug": "photo-focus",
+            "name": "Photo Focus",
+            "description": "Puts user photos front and center with minimal overlays — perfect for scenic shots or selfies.",
+            "cover": "https://res.cloudinary.com/diundang-digital/image/upload/w_250/v1747485088/movy/images/styles/photo-overlay.jpg"
+        },
+        {
+            "id": "f7b8c9d1-e2f3-4a5b-9c6d-7e8f9a0b1c2d",
+            "slug": "minimal-outline",
+            "name": "Minimal Outline",
+            "description": "A modern and elegant design style that emphasizes clarity and subtlety.",
+            "cover": "https://res.cloudinary.com/diundang-digital/image/upload/w_250/v1747571530/movy/images/styles/minimal-outline.jpg"
+        }
+    ]
+}
