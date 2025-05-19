@@ -13,7 +13,7 @@ const config = useRuntimeConfig();
 // default title
 useHead({
   titleTemplate(title) {
-    return title ? `${config.public.appName} | ${title}` : config.public.appName
+    return title ? `${config.public.app.name} | ${title}` : config.public.app.name
   },
   script: [
     {
