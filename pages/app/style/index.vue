@@ -12,7 +12,8 @@
       <section class="grid grid-cols-2 gap-5">
         <template v-for="style in styles" :key="style.id">
           <!-- style -->
-          <div class="cursor-pointer hover:-translate-y-2 hover:-rotate-1 duration-200 col-span-1 flex flex-col justify-between gap-12 bg-gradient-to-br from-secondary-200 to-secondary-50 rounded-lg p-4">
+          <div @click="navigateTo({ name: 'app.style.show', params: { slug: style.slug } })"
+            class="cursor-pointer hover:-translate-y-2 hover:-rotate-1 duration-200 col-span-1 flex flex-col justify-between gap-12 bg-gradient-to-br from-secondary-200 to-secondary-50 rounded-lg p-4">
             <header class="flex justify-between items-center text-slate-900">
               <span class="text-sm font-semibold">{{ style.name }}</span>
               <i class="fa-solid fa-chevron-right"></i>
@@ -20,7 +21,8 @@
 
             <!-- album -->
             <div class="flex justify-end relative">
-              <img :src="style.cover" class="size-20 lg:size-32 rounded translate-x-10 lg:translate-x-28 -translate-y-1"/>
+              <img :src="style.cover"
+                class="size-20 lg:size-32 rounded translate-x-10 lg:translate-x-28 -translate-y-1" />
               <span class="size-20 lg:size-32 rounded bg-slate-800"></span>
             </div>
           </div>

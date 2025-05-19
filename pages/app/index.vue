@@ -50,9 +50,6 @@
           <CardsRecentActivityCard v-if="index < 5" :activity />
         </template>
       </section>
-
-      <!-- see more -->
-      <ButtonsPrimary class="w-full">See more</ButtonsPrimary>
     </ResponsiveContainer>
   </NuxtLayout>
 </template>
