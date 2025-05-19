@@ -13,7 +13,10 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     public: {
-      appName: process.env.NUXT_PUBLIC_APP_NAME,
+      app: {
+        name: process.env.NUXT_PUBLIC_APP_NAME,
+        url: process.env.NUXT_PUBLIC_APP_URL,
+      },
       strava: {
         clientId: process.env.NUXT_PUBLIC_STRAVA_CLIENT_ID,
         redirectUri: process.env.NUXT_PUBLIC_STRAVA_REDIRECT_URI,
