@@ -9,7 +9,16 @@ export type StravaTokenExchangeResponse = {
 
 export type Style = {
     id: string;
+    slug: string;
     name: string;
     description: string;
     cover: string;
+}
+
+export type Card = {
+    id: string;
+    style_id: string;
+    slug: string;
+    name: string;
+    thumbnail: string;
 }
