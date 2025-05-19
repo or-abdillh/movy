@@ -1,5 +1,5 @@
 <template>
-  <nav class="bg-white border-t border-gray-100 fixed left-0 right-0 bottom-0">
+  <nav v-if="currentMenu" class="bg-white border-t border-gray-100 fixed left-0 right-0 bottom-0">
     <ResponsiveContainer>
       <!-- wrapper -->
       <section class="grid grid-cols-4 gap-0">
