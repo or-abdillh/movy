@@ -8,7 +8,9 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     '@pinia/nuxt',
     "pinia-plugin-persistedstate",
-    "@nuxt/image"
+    "@nuxt/image",
+    "@formkit/auto-animate",
+    "@vueuse/nuxt"
   ],
 
   runtimeConfig: {

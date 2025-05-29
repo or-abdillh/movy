@@ -10,12 +10,14 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@formkit/auto-animate": "^0.8.2",
     "@nuxt/fonts": "^0.11.4",
     "@nuxt/image": "^1.10.0",
     "@nuxtjs/tailwindcss": "^6.14.0",
     "@pinia/nuxt": "^0.11.0",
     "@vite-pwa/nuxt": "^1.0.1",
     "@vueuse/core": "^13.2.0",
+    "@vueuse/nuxt": "^13.3.0",
     "moment": "^2.30.1",
     "nuxt": "^3.17.3",
     "pinia": "^3.0.2",
