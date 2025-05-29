@@ -1,7 +1,7 @@
 <template>
   <NuxtLayout name="app-layout">
     <TopBar v-if="style" :title="style.name" />
-    
+
     <template v-if="style">
       <ResponsiveContainer class="px-5 mt-5">
         <header>
@@ -13,16 +13,17 @@
         <section class="grid grid-cols-2 gap-5 mt-8">
           <template v-for="card in cards" :key="card.id">
             <!-- card -->
-            <div
-            class="cursor-pointer relative hover:-translate-y-2 hover:-rotate-1 duration-200 col-span-1 grid place-items-center rounded-lg overflow-hidden">
-            <!-- thumbnail -->
-            <img :src="card.thumbnail" alt="Movy" class="w-full">
+            <div @click="navigateTo({ name: 'app.card.show', params: { slug: card.slug } })"
+              class="cursor-pointer relative hover:-translate-y-2 hover:-rotate-1 duration-200 col-span-1 grid place-items-center rounded-lg overflow-hidden">
+              <!-- thumbnail -->
+              <img :src="card.thumbnail" alt="Movy" class="w-full">
 
-            <!-- name -->
-            <div class="absolute text-sm text-white font-medium left-0 bottom-0 right-0 bg-slate-900 p-3 bg-opacity-20 backdrop-blur text-center">
-              {{ card.name }}
+              <!-- name -->
+              <div
+                class="absolute text-sm text-white font-medium left-0 bottom-0 right-0 bg-slate-900 p-3 bg-opacity-20 backdrop-blur text-center">
+                {{ card.name }}
+              </div>
             </div>
-          </div>
           </template>
         </section>
       </ResponsiveContainer>
