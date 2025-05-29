@@ -4,7 +4,7 @@
       <TopBar :title="card.name" />
 
       <!-- card preview -->
-      <main class="px-5">
+      <main class="px-4">
         <SkinsPicker class="rounded-xl overflow-hidden" :card="card" />
       </main>
 
@@ -12,12 +12,13 @@
         <ResponsiveContainer class="py-3 flex flex-col items-center justify-center gap-6 w-full">
           <!-- actions -->
           <section class="flex gap-3 items-center justify-center w-full">
-            <ButtonsPrimary>
-              <i class="fa-solid fa-paintbrush me-2"></i>
-              Customize
+            <ButtonsPrimary @click="isShowBottomSheets = true">
+              <i class="fa-solid fa-person-running me-2"></i>
+              Insert Activity
             </ButtonsPrimary>
-  
-            <ButtonsPrimary @click="navigateTo({ name: 'app.card.preview', params: { slug: card.slug } })" variant="outline">
+
+            <ButtonsPrimary @click="navigateTo({ name: 'app.card.preview', params: { slug: card.slug } })"
+              variant="outline">
               <i class="fa-solid fa-expand me-2"></i>
               Preview
             </ButtonsPrimary>
@@ -25,6 +26,16 @@
         </ResponsiveContainer>
       </footer>
     </template>
+
+    <!-- bottom sheet for customize -->
+    <BottomSheet @closed="isShowBottomSheets = false" :show="isShowBottomSheets" title="Choose Activity">
+      <section class="px-3 flex flex-col gap-3">
+        <template v-for="activity in athleteStore.activities" :key="activity.id">
+          <!-- list -->
+          <CardsChooseActivityCard :activity @choosed="[cardStore.setSelectedActivity(activity), isShowBottomSheets = false]" />
+        </template>
+      </section>
+    </BottomSheet>
   </NuxtLayout>
 </template>
 
@@ -33,8 +44,12 @@
 import { CardService } from '~/services/card.service'
 import type { Card } from '~/ts/type'
 
+// stores
+const cardStore = useCardStore()
+
 // refs
 const card = ref<Card>()
+const isShowBottomSheets = ref(false)
 
 definePageMeta({
   name: "app.card.show"
@@ -48,6 +63,9 @@ useHead({
 
 // services
 const cardService = new CardService()
+
+// stores
+const athleteStore = useAthleteStore()
 
 // computed
 const slug = computed(() => {
