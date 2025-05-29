@@ -25,7 +25,7 @@
         <div class="overflow-scroll flex gap-3 no-scrollbar">
           <template v-for="style in styles" :key="style.id">
             <!-- style -->
-            <div class="size-64 relative min-w-64 rounded-lg bg-cover bg-center" :style="{ background: `url('${style.cover}')` }">
+            <div @click="navigateTo({ name: 'app.style.show', params: { slug: style.slug } })" class="size-64 relative min-w-64 rounded-lg bg-cover bg-center" :style="{ background: `url('${style.cover}')` }">
               <!-- footer -->
               <div class="bg-slate-900 bg-opacity-30 rounded-b-lg backdrop-blur-sm text-white p-3 absolute bottom-0 left-0 right-0">
                 <p class="text-center font-semibold">{{ style.name }}</p>
