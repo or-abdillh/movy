@@ -86,6 +86,48 @@
             "slug": "ivory-night",
             "name": "Ivory Night",
             "thumbnail": "https://res.cloudinary.com/diundang-digital/image/upload/v1747659203/movy/images/cards/Monochrome/first.jpg"
+        },
+        {
+            "id": "a0f1a2b3-c4d5-4e6f-9a0b-1c2d3e4f5g6h",
+            "style_id": "c4e5f6a7-b8c9-4d1e-8f2a-3b4c5d6e7f8a",
+            "slug": "vibrant-blast",
+            "name": "Vibrant Blast",
+            "thumbnail": "https://res.cloudinary.com/diundang-digital/image/upload/v1748482004/movy/images/cards/Vibrant%20Energy/first.jpg"
+        },
+        {
+            "id": "b1g2h3i4-j5k6-7l8m-9n0o-p1q2r3s4t5u6",
+            "style_id": "c4e5f6a7-b8c9-4d1e-8f2a-3b4c5d6e7f8a",
+            "slug": "electric-surge",
+            "name": "Electric Surge",
+            "thumbnail": "https://res.cloudinary.com/diundang-digital/image/upload/v1748482004/movy/images/cards/Vibrant%20Energy/first.jpg"
+        },
+        {
+            "id": "d7e8f9g0-h1i2-3j4k-5l6m-n7o8p9q0r1s2",
+            "style_id": "c4e5f6a7-b8c9-4d1e-8f2a-3b4c5d6e7f8a",
+            "slug": "neon-sweat",
+            "name": "Neon Sweat",
+            "thumbnail": "https://res.cloudinary.com/diundang-digital/image/upload/v1748482004/movy/images/cards/Vibrant%20Energy/first.jpg"
+        },
+        {
+            "id": "t6u7v8w9-x0y1-2z3a-4b5c-d6e7f8g9h0i1",
+            "style_id": "c4e5f6a7-b8c9-4d1e-8f2a-3b4c5d6e7f8a",
+            "slug": "dynamic-pulse",
+            "name": "Dynamic Pulse",
+            "thumbnail": "https://res.cloudinary.com/diundang-digital/image/upload/v1748482004/movy/images/cards/Vibrant%20Energy/first.jpg"
+        },
+        {
+            "id": "j1k2l3m4-n5o6-7p8q-9r0s-t1u2v3w4x5y6",
+            "style_id": "c4e5f6a7-b8c9-4d1e-8f2a-3b4c5d6e7f8a",
+            "slug": "bold-burn",
+            "name": "Bold Burn",
+            "thumbnail": "https://res.cloudinary.com/diundang-digital/image/upload/v1748482004/movy/images/cards/Vibrant%20Energy/first.jpg"
+        },
+        {
+            "id": "z6y5x4w3-v2u1-0t9s-r8q7-p6o5n4m3l2k1",
+            "style_id": "c4e5f6a7-b8c9-4d1e-8f2a-3b4c5d6e7f8a",
+            "slug": "ignite-momentum",
+            "name": "Ignite Momentum",
+            "thumbnail": "https://res.cloudinary.com/diundang-digital/image/upload/v1748482004/movy/images/cards/Vibrant%20Energy/first.jpg"
         }
     ]
 }
