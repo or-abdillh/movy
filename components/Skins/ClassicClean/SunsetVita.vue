@@ -10,8 +10,8 @@
 
       <!-- toolbar -->
       <SkinsToolbar 
-        :parent="sunsetVita"
         default-cover="https://images.stockcake.com/public/a/3/7/a373f47a-1ead-4d0d-a201-e883a980ec1c_large/sunset-run-silhouette-stockcake.jpg"
+        v-model:parent-model="sunsetVita"
         v-model:activity="activity"
         v-model:cover="cover" />
 
