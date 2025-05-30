@@ -5,10 +5,22 @@ interface Options {
   prefix?: string
 }
 
-// composable
-const runtimeConfig = useRuntimeConfig()
-
+/**
+ * Composable for uploading files to Vercel Blob storage with progress tracking.
+ *
+ * @param options - Configuration options for the upload, including a `prefix` for the blob path.
+ * @returns An object containing:
+ *   - `isUploading`: A ref indicating if an upload is in progress.
+ *   - `progress`: A ref containing the current upload progress (`loaded`, `total`, `percentage`).
+ *   - `upload`: An async function to upload a file to Vercel Blob. Returns the upload result or `undefined` on failure.
+ *
+ * @example
+ * const { isUploading, progress, upload } = useVercelBlob({ prefix: 'uploads' });
+ * const result = await upload(file);
+ */
 export const useVercelBlob = (options: Options) => {
+  
+  const runtimeConfig = useRuntimeConfig()
 
   // refs
   const isUploading = ref(false)
@@ -22,7 +34,7 @@ export const useVercelBlob = (options: Options) => {
   const upload = async (file: File): Promise<PutBlobResult | undefined> => {
 
     // generate path name
-    const pathName = `${options.prefix}/${new Date().getTime()}.${file.name.split('.').pop() || 'jpg'}`
+    const pathName = `${options.prefix}/${file.name}`
 
     try {
       // start
@@ -32,6 +44,7 @@ export const useVercelBlob = (options: Options) => {
       const uploaded = await put(pathName, file, {
         access: "public",
         token: runtimeConfig.public.vercel.blob.read_write_token,
+        allowOverwrite: true,
         onUploadProgress(progressEvent) {
   
           // Update the upload progress
