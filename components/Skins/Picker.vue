@@ -1,6 +1,6 @@
 <template>
     <!-- preview card -->
-    <section class="w-full h-screen">
+    <section :class="$router.currentRoute.value.name === 'app.card.preview' ? 'h-screen' : 'h-[75vh]'" class="w-full">
       <component :is="skins[card.slug]" />
     </section>
 </template>
