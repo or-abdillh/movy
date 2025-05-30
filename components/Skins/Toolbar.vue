@@ -32,8 +32,10 @@
   <BottomSheet title="Edit This Activity" :show="isShowBottomSheet" @closed="isShowBottomSheet = false">
     <form v-if="activityModel" class="px-6 pb-8 flex flex-col gap-6">
 
+      <!-- name  -->
       <InputsText label="Actiivty Title" v-model="activityModel.name" :placeholder="cardStore.selectedActivity?.name || 'new activity'" />
 
+      <!-- other stats -->
       <section class="grid grid-cols-5">
         <div class="col-span-3 flex flex-col gap-6">
           <!-- time -->
@@ -127,7 +129,6 @@ import { paceCounter } from '~/utils/pace-counter.util';
 import type { Activity } from '~/schemas/activity.schema';
 
 interface Props {
-  parent?: HTMLElement
   defaultCover?: string
 }
 
@@ -135,18 +136,19 @@ interface Props {
 const cardStore = useCardStore()
 
 // Props
-const { parent, defaultCover } = defineProps<Props>()
+const { defaultCover } = defineProps<Props>()
 
 // models
 const activityModel = defineModel<Activity>("activity")
 const coverModel = defineModel<string>("cover")
+const parentModel = defineModel<HTMLElement>("parentModel")
 
 // refs
 const uploadedVercelBlob = ref<string>('')
 const isShowBottomSheet = ref<boolean>(false)
 
 // composables
-const { width, height } = useElementSize(parent)
+const { width, height } = useElementSize(parentModel)
 const { transformedUrl, transformingImage } = useImageKit()
 const { isUploading, upload, progress } = useVercelBlob({
   prefix: 'sunset-vita',
