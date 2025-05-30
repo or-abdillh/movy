@@ -44,7 +44,7 @@ export const useVercelBlob = (options: Options) => {
       const uploaded = await put(pathName, file, {
         access: "public",
         token: runtimeConfig.public.vercel.blob.read_write_token,
-        allowOverwrite: true,
+        addRandomSuffix: true,
         onUploadProgress(progressEvent) {
   
           // Update the upload progress
