@@ -1,6 +1,6 @@
 <template>
     <!-- preview card -->
-    <section class="w-full">
+    <section class="w-full h-screen">
       <component :is="skins[card.slug]" />
     </section>
 </template>
