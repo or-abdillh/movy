@@ -22,11 +22,23 @@ export default defineNuxtConfig({
       strava: {
         clientId: process.env.NUXT_PUBLIC_STRAVA_CLIENT_ID,
         redirectUri: process.env.NUXT_PUBLIC_STRAVA_REDIRECT_URI,
+      },
+      vercel: {
+        blob: {
+          read_write_token: process.env.NUXT_PUBLIC_BLOB_READ_WRITE_TOKEN,
+        }
       }
     },
 
     strava: {
       clientSecret: process.env.STRAVA_CLIENT_SECRET,
+    },
+
+    cloudinary: {
+      url: process.env.CLOUDINARY_URL,
+      apiKey: process.env.CLOUDINARY_API_KEY,
+      apiSecret: process.env.CLOUDINARY_API_SECRET,
+      cloudName: process.env.CLOUDINARY_CLOUD_NAME,
     }
   },
 
