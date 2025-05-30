@@ -1,30 +1,26 @@
 <template>
-  <main ref="sunsetVita" :style="{ background: `url('${cover}')` }" class="w-full lg:w-5/12 xl:w-4/12 mx-auto bg-contain bg-center bg-no-repeat h-full">
+  <main ref="sunsetVita" :style="{ background: `url('${cover}')` }"
+    class="w-full lg:w-5/12 xl:w-4/12 mx-auto bg-contain bg-center bg-no-repeat h-full">
     <!-- inner layer -->
-    <main 
+    <main
       class="relative h-full bg-gradient-to-t from-white via-gray-400/40 to-gray-800/20 flex flex-col justify-end gap-12 p-8">
       <header class="flex justify-center items-center gap-6 absolute top-0 left-0 right-0 p-6">
         <BrandsMadeWithPrimary class="text-center" />
       </header>
 
-      <!-- tools: change cover -->
-      <label for="cover" :class="{ 'animate-bounce': isUploading }"
-        class="size-10 cursor-pointer bg-primary-600/50 backdrop-blur-sm rounded-full grid place-items-center absolute top-32 right-12">
-        <span class="text-sm text-slate-200" v-if="isUploading">
-          {{ progress.percentage.toFixed(0) }}%
-        </span>
-        <i v-else class="fa-solid fa-camera-rotate text-slate-200"></i>
-      </label>
-
-      <!-- field input file -->
-      <input v-if="!isUploading" @change="handlePictureUpload" class="hidden" type="file" id="cover" accept="image/*">
+      <!-- toolbar -->
+      <SkinsToolbar 
+        :parent="sunsetVita"
+        default-cover="https://images.stockcake.com/public/a/3/7/a373f47a-1ead-4d0d-a201-e883a980ec1c_large/sunset-run-silhouette-stockcake.jpg"
+        v-model:activity="activity"
+        v-model:cover="cover" />
 
       <!-- bottom -->
       <section>
         <!-- activity title -->
         <section class="grid grid-cols-10 justify-between items-center gap-3 mb-6">
           <h1 class="col-span-8 text-2xl font-bold text-slate-100">
-            {{ actvity?.name || 'Sunset Tempo Run - Central Park' }}
+            {{ activity?.name || 'Sunset Tempo Run - Central Park' }}
           </h1>
           <div class="col-span-2 grid place-items-center">
             <span class="size-10 grid place-items-center bg-gradient-to-tl from-orange-600 to-orange-500 rounded-full">
@@ -38,7 +34,7 @@
           <!-- timestamp -->
           <section
             class="col-span-2 bg-orange-100/20 backdrop-blur-sm-sm px-6 py-2 rounded-full text-slate-800 font-semibold text-sm">
-            {{ moment(actvity?.start_date ?? new Date()).format('MMMM DD, YYYY - hh:mm A') }}
+            {{ moment(activity?.start_date ?? new Date()).format('MMMM DD, YYYY - hh:mm A') }}
           </section>
 
           <!-- distance -->
@@ -48,7 +44,7 @@
               <i class="fa-solid fa-caret-down text-orange-300"></i>
             </div>
             <p class="text-3xl font-bold text-white">
-              {{ actvity?.distance ? (actvity.distance / 1000).toFixed(1) : '10.3' }}Km
+              {{ activity?.distance ? (activity.distance / 1000).toFixed(1) : '10.3' }}Km
             </p>
           </section>
 
@@ -60,7 +56,7 @@
                 HR
               </span>
               <strong class="text-slate-800">
-                {{ actvity?.average_heartrate ? actvity.average_heartrate.toFixed(0) : '145' }} BPM
+                {{ activity?.average_heartrate ? activity.average_heartrate.toFixed(0) : '145' }} BPM
               </strong>
             </div>
             <!-- time -->
@@ -69,7 +65,7 @@
                 Time
               </span>
               <strong class="text-slate-800">
-                {{ actvity?.moving_time ? moment.utc(actvity.moving_time * 1000).format('HH:mm:ss') : '00:45:30' }}
+                {{ activity?.moving_time ? moment.utc(activity.moving_time * 1000).format('HH:mm:ss') : '00:45:30' }}
               </strong>
             </div>
             <!-- pace -->
@@ -78,15 +74,7 @@
                 Pace
               </span>
               <strong class="text-slate-800">
-                {{actvity?.distance && actvity?.moving_time
-                  ? (() => {
-                    const pace = actvity.moving_time / (actvity.distance / 1000);
-                    const min = Math.floor(pace / 60);
-                    const sec = Math.round(pace % 60).toString().padStart(2, '0');
-                    return `${min}:${sec} /km`;
-                  })()
-                  : '4:24 /km'
-                }}
+                {{ activity?.distance && activity.moving_time ? paceCounter(activity) : '04:25' }}
               </strong>
             </div>
           </section>
@@ -99,69 +87,12 @@
 <script setup lang="ts">
 
 import moment from 'moment'
-import { useElementSize } from '@vueuse/core'
-
-// stores
-const cardStore = useCardStore()
+import { paceCounter } from '~/utils/pace-counter.util'
+import type { Activity } from '~/schemas/activity.schema'
 
 // refs
 const sunsetVita = ref<HTMLElement>()
-const uploadedVercelBlob = ref<string>("")
-const defaultPicture = ref<string>(`https://images.stockcake.com/public/a/3/7/a373f47a-1ead-4d0d-a201-e883a980ec1c_large/sunset-run-silhouette-stockcake.jpg`)
-
-// composables
-const { width, height } = useElementSize(sunsetVita)
-const { transformedUrl, transformingImage } = useImageKit()
-const { isUploading, upload, progress } = useVercelBlob({
-  prefix: 'sunset-vita',
-})
-
-
-const actvity = computed(() => {
-  return cardStore.selectedActivity
-})
-
-const cover = computed(() => {
-  // If custom picture is set, return it; otherwise, return the default picture
-  return transformedUrl.value || defaultPicture.value
-})
-
-// handler: file upload
-const handlePictureUpload = async (event: Event) => {
-
-  // Get the file input element and check if files are selected
-  const input = event.target as HTMLInputElement
-
-  // If the input has files, process the first file
-  if (input.files && input.files.length > 0) {
-
-    // Get the first file from the input
-    const picture = input.files[0]
-
-    // upload
-    const uploaded = await upload(picture)
-
-    // success
-    if (uploaded) {
-      
-      // transform the uploaded image URL
-      transformingImage(uploaded.url, {
-        dimension: {
-          width: width.value,
-          height: height.value,
-        }
-      })
-
-      // Set the uploaded URL to the uploadedVercelBlob ref
-      uploadedVercelBlob.value = uploaded.url
-
-      // Optionally, you can reset the input value to allow re-uploading the same file
-      input.value = ''
-    } else {
-      // Handle upload failure (optional)
-      console.error('Upload failed')
-    }
-  }
-}
+const cover = ref<string>("")
+const activity = ref<Activity>()
 
 </script>
