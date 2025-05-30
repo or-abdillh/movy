@@ -1,18 +1,23 @@
 <template>
-  <ResponsiveContainer :style="{ background: `url('${cover}')` }" class="bg-contain bg-center bg-no-repeat">
+  <main ref="sunsetVita" :style="{ background: `url('${cover}')` }" class="w-full lg:w-5/12 xl:w-4/12 mx-auto bg-contain bg-center bg-no-repeat h-full">
     <!-- inner layer -->
-    <main :class="pageName === 'app.card.preview' ? 'min-h-screen' : 'min-h-[75vh]'" class="relative bg-gradient-to-t from-white via-gray-400/40 to-gray-800/20 flex flex-col justify-end gap-12 p-8">
+    <main 
+      class="relative h-full bg-gradient-to-t from-white via-gray-400/40 to-gray-800/20 flex flex-col justify-end gap-12 p-8">
       <header class="flex justify-center items-center gap-6 absolute top-0 left-0 right-0 p-6">
         <BrandsMadeWithPrimary class="text-center" />
       </header>
 
       <!-- tools: change cover -->
-      <label v-if="false" for="cover" class="size-10 animate-bounce cursor-pointer bg-primary-600/50 backdrop-blur-sm rounded-full grid place-items-center absolute top-32 right-12">
-        <i class="fa-solid fa-camera-rotate text-slate-200"></i>
+      <label for="cover" :class="{ 'animate-bounce': isUploading }"
+        class="size-10 cursor-pointer bg-primary-600/50 backdrop-blur-sm rounded-full grid place-items-center absolute top-32 right-12">
+        <span class="text-sm text-slate-200" v-if="isUploading">
+          {{ progress.percentage.toFixed(0) }}%
+        </span>
+        <i v-else class="fa-solid fa-camera-rotate text-slate-200"></i>
       </label>
 
       <!-- field input file -->
-      <input @change="handlePictureUpload" class="hidden" type="file" id="cover" accept="image/*">
+      <input v-if="!isUploading" @change="handlePictureUpload" class="hidden" type="file" id="cover" accept="image/*">
 
       <!-- bottom -->
       <section>
@@ -27,14 +32,15 @@
             </span>
           </div>
         </section>
-  
+
         <!-- other details -->
         <section class="grid grid-cols-2 gap-3">
           <!-- timestamp -->
-          <section class="col-span-2 bg-orange-100/20 backdrop-blur-sm-sm px-6 py-2 rounded-full text-slate-800 font-semibold text-sm">
+          <section
+            class="col-span-2 bg-orange-100/20 backdrop-blur-sm-sm px-6 py-2 rounded-full text-slate-800 font-semibold text-sm">
             {{ moment(actvity?.start_date ?? new Date()).format('MMMM DD, YYYY - hh:mm A') }}
           </section>
-  
+
           <!-- distance -->
           <section class="col-span-1 grid bg-gradient-to-tl from-orange-600 to-orange-500 p-3 rounded-xl">
             <div class="flex justify-between items-center gap-3">
@@ -45,7 +51,7 @@
               {{ actvity?.distance ? (actvity.distance / 1000).toFixed(1) : '10.3' }}Km
             </p>
           </section>
-  
+
           <!-- stats -->
           <section class="col-span-1 flex flex-col gap-2">
             <!-- heart rate -->
@@ -72,13 +78,13 @@
                 Pace
               </span>
               <strong class="text-slate-800">
-                {{ actvity?.distance && actvity?.moving_time
+                {{actvity?.distance && actvity?.moving_time
                   ? (() => {
-                      const pace = actvity.moving_time / (actvity.distance / 1000);
-                      const min = Math.floor(pace / 60);
-                      const sec = Math.round(pace % 60).toString().padStart(2, '0');
-                      return `${min}:${sec} /km`;
-                    })()
+                    const pace = actvity.moving_time / (actvity.distance / 1000);
+                    const min = Math.floor(pace / 60);
+                    const sec = Math.round(pace % 60).toString().padStart(2, '0');
+                    return `${min}:${sec} /km`;
+                  })()
                   : '4:24 /km'
                 }}
               </strong>
@@ -87,27 +93,29 @@
         </section>
       </section>
     </main>
-  </ResponsiveContainer>
+  </main>
 </template>
 
 <script setup lang="ts">
 
 import moment from 'moment'
-
-// composables
-const route = useRoute()
+import { useElementSize } from '@vueuse/core'
 
 // stores
 const cardStore = useCardStore()
 
 // refs
-const customPicture = ref<string>()
-const defaultPicture = ref<string>('https://images.stockcake.com/public/a/3/7/a373f47a-1ead-4d0d-a201-e883a980ec1c_large/sunset-run-silhouette-stockcake.jpg')
+const sunsetVita = ref<HTMLElement>()
+const uploadedVercelBlob = ref<string>("")
+const defaultPicture = ref<string>(`https://images.stockcake.com/public/a/3/7/a373f47a-1ead-4d0d-a201-e883a980ec1c_large/sunset-run-silhouette-stockcake.jpg`)
 
-// computed
-const pageName = computed(() => {
-  return route.name as string
+// composables
+const { width, height } = useElementSize(sunsetVita)
+const { transformedUrl, transformingImage } = useImageKit()
+const { isUploading, upload, progress } = useVercelBlob({
+  prefix: 'sunset-vita',
 })
+
 
 const actvity = computed(() => {
   return cardStore.selectedActivity
@@ -115,33 +123,44 @@ const actvity = computed(() => {
 
 const cover = computed(() => {
   // If custom picture is set, return it; otherwise, return the default picture
-  return customPicture.value || defaultPicture.value
+  return transformedUrl.value || defaultPicture.value
 })
 
 // handler: file upload
-const handlePictureUpload = (event: Event) => {
-
-  console.log('Picture upload triggered')
+const handlePictureUpload = async (event: Event) => {
 
   // Get the file input element and check if files are selected
   const input = event.target as HTMLInputElement
 
-  console.log('Input files:', input.files)
-
   // If the input has files, process the first file
   if (input.files && input.files.length > 0) {
-    
+
     // Get the first file from the input
     const picture = input.files[0]
 
-    console.log('Selected file:', picture)
+    // upload
+    const uploaded = await upload(picture)
 
-    // Generate data URL for the selected image and store it in customPicture
-    const reader = new FileReader()
-    reader.onload = (e) => {
-      customPicture.value = e.target?.result as string
+    // success
+    if (uploaded) {
+      
+      // transform the uploaded image URL
+      transformingImage(uploaded.url, {
+        dimension: {
+          width: width.value,
+          height: height.value,
+        }
+      })
+
+      // Set the uploaded URL to the uploadedVercelBlob ref
+      uploadedVercelBlob.value = uploaded.url
+
+      // Optionally, you can reset the input value to allow re-uploading the same file
+      input.value = ''
+    } else {
+      // Handle upload failure (optional)
+      console.error('Upload failed')
     }
-    reader.readAsDataURL(picture)
   }
 }
 
