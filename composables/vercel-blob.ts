@@ -1,22 +1,26 @@
 import { put } from "@vercel/blob"
+import moment from "moment"
 import type { UploadProgressEvent, PutBlobResult } from "@vercel/blob"
+
 
 interface Options {
   prefix?: string
 }
 
 /**
- * Composable for uploading files to Vercel Blob storage with progress tracking.
+ * A composable for uploading files to Vercel Blob storage with progress tracking.
  *
- * @param options - Configuration options for the upload, including a `prefix` for the blob path.
+ * @param options - Configuration options for the upload, including a `prefix` for the file path.
  * @returns An object containing:
  *   - `isUploading`: A ref indicating if an upload is in progress.
  *   - `progress`: A ref containing the current upload progress (`loaded`, `total`, `percentage`).
- *   - `upload`: An async function to upload a file to Vercel Blob. Returns the upload result or `undefined` on failure.
+ *   - `upload`: An async function to upload a file, returning the upload result or `undefined` on failure.
  *
  * @example
+ * ```typescript
  * const { isUploading, progress, upload } = useVercelBlob({ prefix: 'uploads' });
  * const result = await upload(file);
+ * ```
  */
 export const useVercelBlob = (options: Options) => {
   
@@ -33,8 +37,12 @@ export const useVercelBlob = (options: Options) => {
   // handler: upload
   const upload = async (file: File): Promise<PutBlobResult | undefined> => {
 
+    // get month and year
+    const month = moment().format('MMMM')
+    const year = moment().format('YYYY')
+
     // generate path name
-    const pathName = `${options.prefix}/${file.name}`
+    const pathName = `${year}/${month}/${options.prefix}/${new Date().getTime()}.${file.name.split('.').pop() || 'jpg'}`
 
     try {
       // start
@@ -44,7 +52,6 @@ export const useVercelBlob = (options: Options) => {
       const uploaded = await put(pathName, file, {
         access: "public",
         token: runtimeConfig.public.vercel.blob.read_write_token,
-        addRandomSuffix: true,
         onUploadProgress(progressEvent) {
   
           // Update the upload progress
