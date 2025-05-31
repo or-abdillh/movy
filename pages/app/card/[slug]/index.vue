@@ -11,17 +11,16 @@
       <footer class="fixed bottom-0 left-0 right-0 bg-white/80 backdrop-blur-sm border-t border-slate-200">
         <ResponsiveContainer class="py-3 flex flex-col items-center justify-center gap-6 w-full">
           <!-- actions -->
-          <section class="flex gap-3 items-center justify-center w-full">
-            <ButtonsPrimary @click="isShowBottomSheets = true">
+          <section class="grid grid-cols-3 gap-3 items-center justify-center w-full px-6">
+            <button class="btn__primary col-span-2" @click="isShowBottomSheets = true">
               <i class="fa-solid fa-person-running me-2"></i>
               Insert Activity
-            </ButtonsPrimary>
+            </button>
 
-            <ButtonsPrimary @click="navigateTo({ name: 'app.card.preview', params: { slug: card.slug } })"
-              variant="outline">
-              <i class="fa-solid fa-expand me-2"></i>
-              Preview
-            </ButtonsPrimary>
+            <button class="btn__secondary--outline">
+              <i class="fa-solid fa-paper-plane me-2"></i>
+              Share
+            </button>
           </section>
         </ResponsiveContainer>
       </footer>
