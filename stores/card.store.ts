@@ -5,14 +5,19 @@ export const useCardStore = defineStore("card", () => {
 
   // states
   const selectedActivity = ref<Activity>()
+  const isExporting = ref(false)
 
   // setter
   const setSelectedActivity = (payload: Activity | undefined) => {
     selectedActivity.value = payload
   }
 
+  const setIsExporting = (payload: boolean) => isExporting.value = payload
+
   return {
     selectedActivity,
-    setSelectedActivity
+    isExporting,
+    setSelectedActivity,
+    setIsExporting
   }
 })
