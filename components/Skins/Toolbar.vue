@@ -1,6 +1,6 @@
 <template>
   <!-- tools -->
-  <section
+  <section v-if="!cardStore.isExporting"
     class="absolute top-0 right-0 flex flex-col items-center gap-2 bg-white/10 backdrop-blur-sm rounded-bl-2xl px-4 py-2">
 
     <!-- tools: change cover -->
@@ -23,12 +23,6 @@
       class="size-8 cursor-pointer bg-primary-600/60 backdrop-blur-sm rounded-full grid place-items-center">
       <i class="fa-solid fa-pencil text-slate-200 text-sm"></i>
     </button>
-    
-    <!-- tool: preview -->
-    <button v-if="$router.currentRoute.value.name !== 'app.card.preview'" @click="navigateTo({ name: 'app.card.preview', params: { slug: slug } })"
-      class="size-8 cursor-pointer bg-primary-600/60 backdrop-blur-sm rounded-full grid place-items-center">
-      <i class="fa-solid fa-expand text-slate-200 text-sm"></i>
-    </button>
 
     <!-- field input file -->
     <input v-if="!isUploading" @change="handlePictureUpload" class="hidden" type="file" id="cover" accept="image/*">
@@ -39,7 +33,8 @@
     <form v-if="activityModel" class="px-6 pb-8 flex flex-col gap-6">
 
       <!-- name  -->
-      <InputsText label="Actiivty Title" v-model="activityModel.name" :placeholder="cardStore.selectedActivity?.name || 'new activity'" />
+      <InputsText label="Actiivty Title" v-model="activityModel.name"
+        :placeholder="cardStore.selectedActivity?.name || 'new activity'" />
 
       <!-- other stats -->
       <section class="grid grid-cols-5">
@@ -93,7 +88,8 @@
             <label class="block mb-3 text-sm font-semibold text-slate-900 capitalize">Hear Rate (Average)</label>
             <div class="flex items-center -translate-x-4">
               <!-- decrement -->
-              <button :disabled="activityModel.average_heartrate <= 0" type="button" @click="activityModel.average_heartrate -= 1"
+              <button :disabled="activityModel.average_heartrate <= 0" type="button"
+                @click="activityModel.average_heartrate -= 1"
                 class="size-8 active:scale-90 duration-200 disabled:bg-opacity-50 bg-slate-800 translate-x-1/4 shadow backdrop-blur-sm rounded-full grid place-items-center text-white">
                 <i class="fa-solid fa-minus"></i>
               </button>
@@ -103,7 +99,8 @@
                 :value="`${activityModel.average_heartrate.toFixed() ?? 149} BPM`">
 
               <!-- increment -->
-              <button type="button" :disabled="activityModel.average_heartrate >= 219" @click="activityModel.average_heartrate += 1"
+              <button type="button" :disabled="activityModel.average_heartrate >= 219"
+                @click="activityModel.average_heartrate += 1"
                 class="size-8 bg-slate-800 active:scale-90 disabled:bg-opacity-50 duration-200 -translate-x-1/4 shadow backdrop-blur-sm rounded-full grid place-items-center text-white">
                 <i class="fa-solid fa-plus"></i>
               </button>
@@ -136,14 +133,13 @@ import type { Activity } from '~/schemas/activity.schema';
 
 interface Props {
   defaultCover?: string,
-  slug: string
 }
 
 // stores
 const cardStore = useCardStore()
 
 // Props
-const { defaultCover, slug } = defineProps<Props>()
+const { defaultCover } = defineProps<Props>()
 
 // models
 const activityModel = defineModel<Activity>("activity")
@@ -182,6 +178,35 @@ watch(
     }
   },
   { immediate: true }
+)
+
+watch(
+  () => cardStore.isExporting,
+  async (isExporting) => {
+
+    // if is exporting, set the cover model to the retransforming URL using preset
+    if (isExporting) {
+      transformingImage(uploadedVercelBlob.value, {
+        usePreset: true
+      })
+
+      // update the cover model with the transformed URL
+      coverModel.value = transformedUrl.value
+    } else {
+      setTimeout(() => {
+
+        transformingImage(uploadedVercelBlob.value, {
+          dimension: {
+            width: width.value,
+            height: height.value,
+          }
+        })
+
+        // update the cover model with the transformed URL
+        coverModel.value = transformedUrl.value
+      }, 1500)
+    }
+  }
 )
 
 // handler: file upload
