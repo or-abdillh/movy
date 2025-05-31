@@ -9,3 +9,22 @@
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
+
+@layer components {
+
+  .btn__primary {
+    @apply bg-primary-600 text-white font-semibold py-2 px-4 rounded-xl outline outline-transparent hover:outline-primary-400 outline-offset-2 transition duration-200 ease-in-out;
+  }
+
+  .btn__secondary {
+    @apply bg-secondary-600 text-white font-semibold py-2 px-4 rounded-xl outline outline-transparent hover:outline-secondary-400 outline-offset-2 transition duration-200 ease-in-out;
+  }
+
+  .btn__primary--outline {
+    @apply bg-transparent border border-primary-600 text-primary-600 font-semibold py-2 px-4 rounded-xl outline outline-transparent hover:outline-primary-400 outline-offset-2 transition duration-200 ease-in-out;
+  }
+
+  .btn__secondary--outline {
+    @apply bg-transparent border border-secondary-600 text-secondary-600 font-semibold py-2 px-4 rounded-xl outline outline-transparent hover:outline-secondary-400 outline-offset-2 transition duration-200 ease-in-out;
+  }
+}
