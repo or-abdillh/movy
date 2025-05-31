@@ -37,6 +37,9 @@ export const useVercelBlob = (options: Options) => {
   // handler: upload
   const upload = async (file: File): Promise<PutBlobResult | undefined> => {
 
+    // get Vercel Blob token from environment variables
+    const token = import.meta.env.VITE_BLOB_READ_WRITE_TOKEN as string
+
     // get month and year
     const month = moment().format('MMMM')
     const year = moment().format('YYYY')
@@ -51,7 +54,7 @@ export const useVercelBlob = (options: Options) => {
       // upload to Vercel Blob
       const uploaded = await put(pathName, file, {
         access: "public",
-        token: runtimeConfig.public.vercel.blob.read_write_token,
+        token,
         onUploadProgress(progressEvent) {
   
           // Update the upload progress
