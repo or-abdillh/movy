@@ -21,7 +21,13 @@
     <!-- tool: edit activity -->
     <button @click="isShowBottomSheet = true" :disabled="!activityModel"
       class="size-8 cursor-pointer bg-primary-600/60 backdrop-blur-sm rounded-full grid place-items-center">
-      <i class="fa-solid fa-cog text-slate-200 text-sm"></i>
+      <i class="fa-solid fa-pencil text-slate-200 text-sm"></i>
+    </button>
+    
+    <!-- tool: preview -->
+    <button v-if="$router.currentRoute.value.name !== 'app.card.preview'" @click="navigateTo({ name: 'app.card.preview', params: { slug: slug } })"
+      class="size-8 cursor-pointer bg-primary-600/60 backdrop-blur-sm rounded-full grid place-items-center">
+      <i class="fa-solid fa-expand text-slate-200 text-sm"></i>
     </button>
 
     <!-- field input file -->
@@ -129,14 +135,15 @@ import { paceCounter } from '~/utils/pace-counter.util';
 import type { Activity } from '~/schemas/activity.schema';
 
 interface Props {
-  defaultCover?: string
+  defaultCover?: string,
+  slug: string
 }
 
 // stores
 const cardStore = useCardStore()
 
 // Props
-const { defaultCover } = defineProps<Props>()
+const { defaultCover, slug } = defineProps<Props>()
 
 // models
 const activityModel = defineModel<Activity>("activity")
