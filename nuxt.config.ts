@@ -25,7 +25,6 @@ export default defineNuxtConfig({
       },
       vercel: {
         blob: {
-          read_write_token: process.env.NUXT_PUBLIC_BLOB_READ_WRITE_TOKEN,
           endpoint: process.env.NUXT_PUBLIC_VERCEL_BLOB_ENDPOINT,
         }
       },
