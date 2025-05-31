@@ -5,7 +5,7 @@
     <!-- inner layer -->
     <main :class="isExporting ? 'p-32' : 'p-8'"
       class="relative h-full bg-gradient-to-t from-white/90 via-gray-400/40 to-gray-800/20 flex flex-col justify-end gap-12">
-      <header :class="isExporting ? 'top-32' : 'top-0'" class="flex justify-center items-center gap-6 absolute left-0 right-0 p-6">
+      <header :class="isExporting ? 'top-16' : 'top-0'" class="flex justify-center items-center gap-6 absolute left-0 right-0 p-6">
         <BrandsMadeWithPrimary class="text-center" :style="{ transform: isExporting ? 'scale(2.5)' : 'scale(1)' }" />
       </header>
 
