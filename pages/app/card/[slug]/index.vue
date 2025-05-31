@@ -49,7 +49,7 @@
         <section ref="exportedResultEl">
         </section>
 
-        <section v-if="!cardStore.isExporting" class="flex flex-col items-center gap-4 mt-6 px-6">
+        <section v-if="!cardStore.isExporting" class="flex flex-col items-center gap-4 mt-6 px-6 mb-4">
           <button class="btn__primary w-full" @click="downloadExportedCardImage" :disabled="cardStore.isExporting">
             <i class="fa-solid fa-download me-2"></i>
             Download Image
